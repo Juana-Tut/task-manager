@@ -11,6 +11,7 @@ router.get("/",(req,res) =>{
     res.render("index",{tasks})
 });
 
+// Add a new task
 router.post("/add-task",(req,res) => {
     const{title, description} = req.body;
     if (!title){
@@ -20,6 +21,7 @@ router.post("/add-task",(req,res) => {
     res.redirect("/");// Reload page to reflect changes
 });
 
+// Toggle task completion
 router.post("/toggle-task/:id",(req,res) => {
     const taskId = parseInt(req.params.id); // Get ID from URL
     const task = tasks.find(t => t.id === taskId); // Find task
@@ -28,5 +30,13 @@ router.post("/toggle-task/:id",(req,res) => {
         task.completed = !task.completed;// Toggle completed status
     }
     res.redirect("/");// Reload page to reflect changes
-})
+});
+
+//Delete task
+router.post("/delete-task/:id",(req,res)=> {
+    const taskId = parseInt(req.params.id); //get id from URl
+    tasks = tasks.filter(t => t.id !== taskId); // Remove the task
+    res.redirect("/");//Reload page to reflect change
+});
+
 export default router;
