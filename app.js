@@ -20,6 +20,7 @@ app.use("/",route);
 app.use((req,res) => {
     res.status(404).send("404. Page Not Found. \n");
 })
+
 const PORT = 3000;
 app.listen(PORT, () =>{
     console.log(`Server running at http://localhost:${PORT}/`)

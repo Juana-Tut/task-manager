@@ -15,5 +15,15 @@
         <input type="text" name="description" placeholder="Task Description">
         <button type="submit">Add Task</button>
     </form>
+    <% tasks.forEach(task => { %>
+        <li class="<%= task.completed ? 'completed' : '' %>">
+            <strong><%= task.title %></strong> - <%= task.description %>
+            
+            <!-- Toggle Complete/Undo Button -->
+            <form action="/toggle-task/<%= task.id %>" method="POST" style="display:inline;">
+                <button type="submit"><%= task.completed ? 'Undo' : 'Complete' %></button>
+            </form>
+        </li>
+    <% }) %>    
 </body>
 </html>
