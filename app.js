@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import route from "./routes/route.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ const loggingMiddleware= (req, res,next) => {
 }
 
 app.use(loggingMiddleware)
+app.use("/",route);
 app.use((req,res) => {
     res.status(404).send("404. Page Not Found. \n");
 })
