@@ -14,11 +14,6 @@ The app follows **Server-Side Rendering (SSR)** principles using the **EJS** tem
 
 ## Installation & Setup
 
-### Prerequisites
-Ensure you have the following installed on your system:
-- **Node.js** (Download from [nodejs.org](https://nodejs.org/))
-- **Git** (Optional, for cloning the repository)
-
 ### Steps to Run the App
 
 #### 1. Install Dependencies
