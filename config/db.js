@@ -14,3 +14,21 @@ const pool = new Pool({
     port: process.env.DB_PORT
 });
 
+// let's test the connection pool to ensure it actually works
+pool.connect((err, client, release) => { 
+    if (err) { 
+       return console.error('Error acquiring client', err.stack); 
+    } 
+    console.log('Connected to PostgreSQL database'); 
+    release();
+});
+// check for errors
+pool.on('error', (err) => {
+    console.error('Unexpected error on idle client', err);
+    process.exit(-1);
+  });
+  
+  // make variables available for importing from other files
+  export const query = (text, params) => pool.query(text, params);
+  export default pool;
+  
