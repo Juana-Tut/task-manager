@@ -11,8 +11,8 @@ app.set("view engine", "ejs")
 app.set("views", path.join(process.cwd(), "views"))
 
 const loggingMiddleware= (req, res,next) => {
-    const timestamp = new Date().toISOString;
-    console.log(`${timestamp}] ${req.method} ${req.url}`);
+    const timestamp = new Date().toISOString();
+    console.log(`[${timestamp}] ${req.method} ${req.url}`);
     next();
 }
 
