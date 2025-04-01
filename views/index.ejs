@@ -10,25 +10,36 @@
     <h1>Task Management</h1>
     
     <!-- Add Task Form -->
-    <form action="/add-task" method="POST">
-        <input type="text" name="title" placeholder="Task Title" required>
-        <input type="text" name="description" placeholder="Task Description">
+    <form action="/add-task" method="POST" id="taskForm">
+        <input type="text" name="title" placeholder="Task Title" id="title" required>
+        <% if (errors.title) { %>
+            <span class="error"><%= errors.title %></span>
+        <% } %>
+        <input type="text" name="description" placeholder="Task Description (Optional)" id="description">
+        <% if (errors.description) { %>
+            <span class="error"><%= errors.description %></span>
+        <% } %>
         <button type="submit">Add Task</button>
     </form>
-    <% tasks.forEach(task => { %>
-        <li class="<%= task.completed ? 'completed' : '' %>">
-            <strong><%= task.title %></strong> - <%= task.description %>
-            
-            <!-- Toggle Complete/Undo Button -->
-            <form action="/toggle-task/<%= task.id %>" method="POST" style="display:inline;">
-                <button type="submit"><%= task.completed ? 'Undo' : 'Complete' %></button>
-            </form>
 
-            <!-- Delete Button -->
-            <form action="/delete-task/<%= task.id %>" method="POST" style="display:inline;">
-                <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-            </form>
-        </li>
-    <% }) %>    
+    <ul>
+        <% tasks.forEach(task => { %>
+            <li class="<%= task.completed ? 'completed' : '' %>">
+                <strong><%= task.title %></strong> - <%= task.description %>
+                
+                <!-- Toggle Complete/Undo Button -->
+                <form action="/toggle-task/<%= task.id %>" method="POST" style="display:inline;">
+                    <button type="submit"><%= task.completed ? 'Undo' : 'Complete' %></button>
+                </form>
+
+                <!-- Delete Button -->
+                <form action="/delete-task/<%= task.id %>" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+            </li>
+        <% }) %> 
+    </ul>
+
+   <!--<script src="script.js"></script>   --> 
 </body>
 </html>
