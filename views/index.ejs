@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>Task Management</h1>
+<%- include('partials/header') %>
     
     <!-- Add Task Form -->
     <form action="/add-task" method="POST" id="taskForm">
@@ -39,7 +30,6 @@
             </li>
         <% }) %> 
     </ul>
-
-   <!--<script src="script.js"></script>   --> 
+    <%- include('partials/footer') %>
 </body>
 </html>
