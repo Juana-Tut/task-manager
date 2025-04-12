@@ -33,3 +33,9 @@ li {
     text-decoration: line-through;
     color: gray;
 }
+.error-input {
+    border: 2px solid red;
+}
+.success-input {
+    border: 2px solid green;
+}

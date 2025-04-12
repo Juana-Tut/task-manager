@@ -7,7 +7,7 @@ import { query } from '../config/db.js';
 router.get("/", async (req, res) => {
     try {
         const result = await query("SELECT * FROM tasks");
-        res.render("index", { tasks: result.rows, errors: {} });
+        res.render("index", { tasks: result.rows, errors: {}, title: '', description: '' });
     } catch (err) {
         res.status(500).send("Error retrieving tasks");
     }
@@ -29,7 +29,12 @@ router.post("/add-task", async (req, res) => {
     if (Object.keys(errors).length > 0) {
         try {
             const result = await query("SELECT * FROM tasks");
-            return res.render("index", { tasks: result.rows, errors: errors });
+            return res.render("index", { 
+                tasks: result.rows, 
+                errors: errors, 
+                title: title || '', 
+                description: description || '' 
+            });
         } catch (err) {
             return res.status(500).send("Error retrieving tasks");
         }

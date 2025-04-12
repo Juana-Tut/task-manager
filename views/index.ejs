@@ -2,14 +2,31 @@
     
     <!-- Add Task Form -->
     <form action="/add-task" method="POST" id="taskForm">
-        <input type="text" name="title" placeholder="Task Title" id="title" required>
-        <% if (errors.title) { %>
-            <span class="error"><%= errors.title %></span>
-        <% } %>
-        <input type="text" name="description" placeholder="Task Description (Optional)" id="description">
-        <% if (errors.description) { %>
-            <span class="error"><%= errors.description %></span>
-        <% } %>
+
+            <% if (errors.title) { %>
+                <span class="error"><%= errors.title %></span><br>
+            <% } %>
+            <input 
+                type="text" 
+                name="title" 
+                placeholder="Task Title" 
+                id="title" 
+                required 
+                class="<%= errors.title ? 'error-input' : 'success-input' %>"
+                value="<%= title %>"
+            >
+            <% if (errors.description) { %>
+                <span class="error"><%= errors.description %></span><br>
+            <% } %>
+            <input 
+                type="text" 
+                name="description" 
+                placeholder="Task Description (Optional)" 
+                id="description" 
+                class="<%= errors.description ? 'error-input' : 'success-input' %>"
+                value="<%= description %>"
+            >
+        
         <button type="submit">Add Task</button>
     </form>
 
