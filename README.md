@@ -11,6 +11,49 @@ This is a simple Task Management Web App built using **Node.js**, **Express**, *
 The app follows **Server-Side Rendering (SSR)** principles using the **EJS** templating engine. All task data is stored **locally in memory**.
 
 ---
+## Database Setup
+### Pre requisite
+  - PostgreSQL installed and set up on your system.
+### Set up the Database
+
+#### 1. Login as administrator
+```sh
+sudo -u postgres psql 
+```
+#### 2. Create a new database 
+```sh
+CREATE DATABASE tasks;
+```
+#### 3. Login to the database
+```sh
+\c tasks
+```
+#### 4. Create a role (user) to access the database (signups)
+```sh
+CREATE ROLE tasks WITH LOGIN PASSWORD 'tasklogin';
+```
+#### 5. Exit & Login back as administrator
+```sh
+exit
+```
+```sh
+sudo -u postgres psql
+```
+#### 6. Grant permissions to our user/role 
+```sh
+ALTER DATABASE tasks OWNER TO tasks;
+```
+```sh
+GRANT CREATE ON DATABASE tasks TO tasks;
+```
+#### 7. Exit and Login as the newly created user
+```sh
+psql --host=localhost --dbname=tasks --username=tasks
+```
+#### 8. Run the sql file
+```sh
+\i Database/db.sql
+```
 
 ## Installation & Setup
 
@@ -31,7 +74,7 @@ npm start
 #### 3. Open in Browser
 Once the server is running, open your browser and visit:
 ```sh
-http://localhost:5000/
+http://localhost:4000/
 ```
 
 ---
